@@ -9,11 +9,11 @@ phases:
              - echo $(podman --version)
              - which aws
              - which podman
-             - aws ecr get-login-password --region $AWS_DEFAULT_REGION  > ecr_passwd.txt
-             - podman login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com < ecr_passwd.txt
+             - aws ecr get-login-password --region ${AWS_DEFAULT_REGION}  > ecr_passwd.txt
+             - podman login --username AWS --password-stdin ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com < ecr_passwd.txt
             ### Pulling the image
              - echo Pulling latest image from Docker Hub
-             - podman pull $IMAGE_REPO_NAME:$IMAGE_TAG
+             - podman pull ${IMAGE_REPO_NAME}:${IMAGE_TAG}
             ### Creating the ECR repository
              ###- echo Create Repo $(/usr/local/bin/aws ecr describe-repositories --repository-names ${IMAGE_REPO_NAME} || /usr/local/bin/aws ecr create-repository --repository-name ${IMAGE_REPO_NAME})
     build:
