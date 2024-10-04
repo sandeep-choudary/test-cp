@@ -11,6 +11,7 @@ phases:
              - which podman
              - env
              - aws ecr get-login-password --region us-west-2  > ecr_passwd.txt
+             - podman pull alpine
              - podman login --username AWS --password-stdin 140023371661.dkr.ecr.us-west-2.amazonaws.com < ecr_passwd.txt
             ### Pulling the image
              - echo Pulling latest image from Docker Hub
